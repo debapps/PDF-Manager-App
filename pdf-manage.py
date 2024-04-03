@@ -1,0 +1,1 @@
+# This module is the PDF manager module. It contains all the codes responsible for handling PDF files.

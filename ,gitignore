@@ -1,0 +1,29 @@
+# Python-specific ignores
+
+_.pyc
+_.pyo
+
+# Virtual environments
+
+venv/
+**pycache**/
+
+# IDE-specific files (you can adjust this based on your development environment)
+
+.vscode/
+.idea/
+_.sublime-project
+_.sublime-workspace
+
+# Compiled Python files
+
+_.pyc
+_.pyo
+
+# Local development settings
+
+.env
+
+# Miscellaneous
+
+.DS_Store
