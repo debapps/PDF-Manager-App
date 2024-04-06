@@ -6,3 +6,11 @@
 # into a text file.
 
 # This application is desktop application using text base input/output.
+
+from pdf_manage import PDFManager
+
+pdf : PDFManager = PDFManager(r'D:/Personal/My Resume/Debaditya_Bhar_Resume.pdf')
+
+# pdf.extract_pdf_text(r'D:/Personal/My Resume/resume.txt')
+
+pdf.crop_pdf_file([0,1,4], r'D:/Personal/My Resume/346863_short_resume.pdf')
