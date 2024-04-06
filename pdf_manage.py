@@ -29,14 +29,14 @@ class PDFManager:
         reader = PdfReader(self.pdf_path)
         extract_text = []
 
-        print('\tExtracting text from PDF file..')
+        print('\n\tExtracting text from PDF file..')
         # For all the pages, extract the text.
         for page in reader.pages:
             extract_text.append(page.extract_text())
 
         with open(out_file_path, 'w', encoding='utf-8') as output:
             output.writelines(extract_text)
-        print('\tText is saved successfully into output file.')
+        print('\tText is saved successfully into output file.\n')
 
     
     def crop_pdf_file(self, page_list, out_pdf_file):
@@ -62,7 +62,7 @@ class PDFManager:
         with open(out_pdf_file, 'wb') as fp:
             writer.write(fp)
 
-        print('\tPages are saved successfully into output file.')
+        print('\n\tPages are saved successfully into output file.\n')
 
     def merge_pdf(self, out_pdf_file):
         """This function takes input the output pdf file full path. It merges all the pdf file in
@@ -71,10 +71,41 @@ class PDFManager:
         if os.path.isfile(self.pdf_path):
             print('Error: The PDFManager is not initialize Directory path where all input PDF files reside.')
             return None
+        else:
+            # Change the current working directory
+            os.chdir(self.pdf_path)
+
         
         if self.get_file_ext(out_pdf_file) != 'pdf':
             print('Error: Please enter output file as PDF file with .pdf extension.')
             return None
+        
+        # Get the list of PDF files.
+        pdf_files = [file for file in os.listdir(self.pdf_path) 
+                     if self.get_file_ext(file) == 'pdf']
+        
+        if len(pdf_files) == 0:
+            print(f'Error: There is no PDF file in Directory - {self.pdf_path}')
+            return None
+
+        # Initialize the merger object.
+        merger = PdfWriter()
+
+        # Merge the pdf files in the pdf file list.
+        print('\n')
+        for pdf in pdf_files:
+            merger.append(pdf)
+            print(f'\tMerging PDF file - {pdf}')
+
+        # Write the merged output into the file and close the merger.
+        print(f'\n\tMerged all PDF Files into {out_pdf_file}\n')
+        merger.write(out_pdf_file)
+        merger.close()
+
+        
+        
+
+
         
         
 
