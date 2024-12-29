@@ -27,3 +27,7 @@ _.pyo
 # Miscellaneous
 
 .DS_Store
+
+# Executable files.
+
+.exe
